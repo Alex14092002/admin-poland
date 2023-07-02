@@ -228,7 +228,7 @@
         const total = document.querySelector('.total')
          const table = document.querySelector('.table')
           const listProduct = document.querySelector('.table-product')
-         const res = await fetch(` https://data-nail-hl-default-rtdb.firebaseio.com/customer/${id_item}.json`)
+         const res = await fetch(`https://db-ecomer-pola-default-rtdb.firebaseio.com/customer/${id_item}.json`)
          const data = await res.json();
          const cartItem = data.cartItems;
          console.log(cartItem);
