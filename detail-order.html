@@ -179,15 +179,15 @@
           
             <th>Fisrttname</th>
             <th>LastName</th>
-            <th>City</th>
+            
             <th>Phone</th>
-            <th>companyName</th>
-            <th>postalCode</th>
-            <th>state</th>
-            <th>Address1</th>
-            <th>Address2</th>
-            <th>Country</th>
+          
+          
+           
+            <th>Address</th>
+          
             <th>Status</th>
+            <th>Note</th>
           </tr>
      
 
@@ -253,15 +253,14 @@
             
             <td>${data.firstName}</td>
             <td>${data.lastName}</td>
-            <td>${data.city}</td>
+           
             <td>${data.phoneNumber}</td>
-            <td>${data.companyName}</td>
-            <td>${data.postalCode}</td>
-            <td>${data.state}</td>
-            <td>${data.address1}</td>
-            <td>${data.address2}</td>
-            <td>${data.country}</td>
+           
+          
+            <td>${data.address}</td>
+           
             <td>${data.status}</td>
+            <td>${data.noteOrder}</td>
           </tr>
             `
           cartItem.map((t) =>{
@@ -291,7 +290,7 @@
           total.innerHTML += `
           <tr>
               <td class="title-total">Total</td>
-              <td>${data.total} zl</td>
+              <td>${data.total * 1.23 + 45} zl</td>
             </tr>
           `
 
