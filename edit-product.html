@@ -188,9 +188,13 @@
                 <img src="" id="preview-img5" alt="">
             </div>
             <div class="col-4 item-edit">
-                <label for="price">Price :</label>
+                <label for="price">Price Netto:</label>
                 <input type="text" id="price" placeholder="Enter name price" />
             </div>
+            <div class="col-4 item-edit">
+              <label for="price2">Price Brutto:</label>
+              <input type="text" id="price2" placeholder="Enter name price" />
+          </div>
           </div>
         <div class="col-12 item-edit textarea">
           <label for="">Describe :</label>
@@ -238,6 +242,7 @@
       name: document.querySelector("#name").value.trim(),
       price: document.querySelector("#price").value.trim(),
       describe: document.querySelector("#describe").value.trim(),
+      price2 : document.querySelector('#price2').value.trim()
     };
 
     const images = {};
@@ -273,7 +278,7 @@
         fetch(url, options)
           .then((res) => res.json())
           .then((data) => {
-            document.location = `product-product.html?id_catelory=${id_catelory}`;
+            document.location = `product.html?id_catelory=${id_catelory}`;
           })
           .catch((error) => {
             console.error(`Error updating product: ${error}`);
@@ -291,7 +296,7 @@
       document.querySelector("#name").value = services.name;
       document.querySelector("#price").value = services.price;
       document.querySelector("#describe").value = services.describe;
-      
+      document.querySelector("#price2").value = services.price2
 
     });
 

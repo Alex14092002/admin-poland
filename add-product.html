@@ -234,9 +234,13 @@
                 <input type="file" id="img5" accept="image/*" />
               </div>
               <div class="col-4 item-edit">
-                <label for="price">Price:</label>
-                <input type="text" id="price" placeholder="Enter product price" />
-              </div>
+                <label for="price">Price Netto:</label>
+                <input type="text" id="price" placeholder="Enter name price" />
+            </div>
+            <div class="col-4 item-edit">
+              <label for="price2">Price Brutto:</label>
+              <input type="text" id="price2" placeholder="Enter name price" />
+          </div>
              
             </div>
             <div class="col-12 item-edit textarea">
@@ -279,7 +283,7 @@ btnAdd.onclick = function () {
   const nameInput = document.querySelector('#name');
   const priceInput = document.querySelector('#price');
   const describeInput = document.querySelector('#describe');
-
+  const price2 = document.querySelector('#price2')
   const images = {};
   const imgInputs = document.querySelectorAll('input[type="file"]');
   imgInputs.forEach((input, index) => {
