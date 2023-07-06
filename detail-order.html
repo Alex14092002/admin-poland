@@ -239,7 +239,8 @@
      
         let params = new URLSearchParams(location.search);
         let id_item = params.get('id')
-        
+        var vanchuyen
+
         const total = document.querySelector('.total')
          const table = document.querySelector('.table')
           const listProduct = document.querySelector('.table-product')
@@ -286,11 +287,15 @@
             </td>
             `
           })
-         
+          if(data.total >= 1000){
+            vanchuyen = 0
+          } else{
+            vanchuyen = 40
+          }
           total.innerHTML += `
           <tr>
               <td class="title-total">Total</td>
-              <td>${data.total * 1.23 + 45} zl</td>
+              <td>${data.total * 1.23 + vanchuyen} zl</td>
             </tr>
           `
 
