@@ -200,6 +200,7 @@
                     class="nav-item nav-link"
                     ><i class="fa fa-keyboard me-2"></i>zelarko</a
                   >
+                  <a href="./product.html?id_catelory=sanphammoi" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sản Phẩm Mới</a>
                 </div>
             </nav>
         </div>
@@ -239,8 +240,12 @@
             </div>
             <div class="col-4 item-edit">
               <label for="price2">Price Brutto:</label>
-              <input type="text" id="price2" placeholder="Enter name price" />
+              <input type="text" id="price2" placeholder="Enter name price2" />
           </div>
+          <div class="col-4 item-edit">
+            <label for="type">Đơn vị tính:</label>
+            <input type="text" id="type" placeholder="Enter name type" />
+        </div>
              
             </div>
             <div class="col-12 item-edit textarea">
@@ -283,7 +288,8 @@ btnAdd.onclick = function () {
   const nameInput = document.querySelector('#name');
   const priceInput = document.querySelector('#price');
   const describeInput = document.querySelector('#describe');
-  const price2 = document.querySelector('#price2')
+  const price2 = document.querySelector('#price2');
+  const type = document.querySelector('#type')
   const images = {};
   const imgInputs = document.querySelectorAll('input[type="file"]');
   imgInputs.forEach((input, index) => {
@@ -298,8 +304,11 @@ btnAdd.onclick = function () {
           const data = {
             name: nameInput.value.trim(),
             price: priceInput.value.trim(),
+            price2 : price2.value.trim(),
             describe: describeInput.value.trim(),
-            ...images
+            timestamp: new Date().getTime(), // Add timestamp field with current time
+            ...images,
+            type : type.value.trim()
           };
 
           fetch(url, {
@@ -310,6 +319,7 @@ btnAdd.onclick = function () {
             .then(response => response.json())
             .then(data => {
               console.log('Product created successfully!');
+              alert("Thêm thành công")
               document.location = `product.html?id_catelory=${id_catelory}`;
             })
             .catch(error => {

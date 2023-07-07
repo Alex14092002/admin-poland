@@ -144,6 +144,7 @@
             <a href="./product.html?id_catelory=wentylator" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>wentylator</a>
             <a href="./product.html?id_catelory=zabawka" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>zabawka</a>
             <a href="./product.html?id_catelory=zelarko" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>zelarko</a>
+            <a href="./product.html?id_catelory=sanphammoi" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sản Phẩm Mới</a>
         </div>
         </nav>
       </div>
@@ -195,6 +196,10 @@
               <label for="price2">Price Brutto:</label>
               <input type="text" id="price2" placeholder="Enter name price" />
           </div>
+          <div class="col-4 item-edit">
+            <label for="type">Đơn vị tính:</label>
+            <input type="text" id="type" placeholder="Enter name type" />
+        </div>
           </div>
         <div class="col-12 item-edit textarea">
           <label for="">Describe :</label>
@@ -242,7 +247,8 @@
       name: document.querySelector("#name").value.trim(),
       price: document.querySelector("#price").value.trim(),
       describe: document.querySelector("#describe").value.trim(),
-      price2 : document.querySelector('#price2').value.trim()
+      price2 : document.querySelector('#price2').value.trim(),
+      type : document.querySelector('#type').value.trim()
     };
 
     const images = {};
@@ -297,7 +303,7 @@
       document.querySelector("#price").value = services.price;
       document.querySelector("#describe").value = services.describe;
       document.querySelector("#price2").value = services.price2
-
+      document.querySelector('#type').value = services.type
     });
 
     </script> 
