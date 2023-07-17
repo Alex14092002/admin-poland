@@ -332,7 +332,8 @@
       };
       // Khởi tạo Firebase
       firebase.initializeApp(firebaseConfig);
-      let params = new URLSearchParams(location.search);
+      
+  let params = new URLSearchParams(location.search);
   let id = params.get("id");
   let id_catelory = params.get("id_catelory");
   console.log(id, id_catelory);
@@ -350,49 +351,42 @@
       type: document.querySelector("#type").value.trim(),
     };
 
+    const images = {};
+
     const fileInputs = document.querySelectorAll('input[type="file"]');
     const storageRef = firebase.storage().ref();
 
-    Promise.all(
-      Array.from(fileInputs).map((input, index) => {
-        const file = input.files[0];
-        if (file) {
-          const imageRef = storageRef.child(
-            `images/${id_catelory}/img${index + 1}`
-          );
-          return imageRef.put(file);
-        }
-      })
-    )
-      .then((snapshotArray) => {
-        const images = {};
+    const uploadPromises = Array.from(fileInputs).map((input, index) => {
+      const file = input.files[0];
+      if (file) {
+        const randomIndex = Math.random().toString(36).substring(2, 8);
+        const imageRef = storageRef.child(
+          `images/${id_catelory}/${id}/img${index + 1}_${randomIndex}`
+        );
+        return imageRef.put(file).then((snapshot) => {
+          return snapshot.ref.getDownloadURL().then((downloadURL) => {
+            images[`img${index + 1}`] = downloadURL;
+          });
+        });
+      }
+    });
 
-        Promise.all(
-          snapshotArray.map((snapshot, index) => {
-            return snapshot.ref.getDownloadURL().then((downloadURL) => {
-              images[`img${index + 1}`] = downloadURL;
-            });
-          })
-        )
-          .then(() => {
-            const data = { ...services, ...images };
-            const options = {
-              method: "put",
-              body: JSON.stringify(data),
-              headers: { "Content-Type": "application/json" },
-            };
+    Promise.all(uploadPromises)
+      .then(() => {
+        const data = { ...services, ...images };
+        const options = {
+          method: "put",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" },
+        };
 
-            fetch(url, options)
-              .then((res) => res.json())
-              .then((data) => {
-                document.location = `product.html?id_catelory=${id_catelory}`;
-              })
-              .catch((error) => {
-                console.error(`Error updating product: ${error}`);
-              });
+        fetch(url, options)
+          .then((res) => res.json())
+          .then((data) => {
+            document.location = `product.html?id_catelory=${id_catelory}`;
           })
           .catch((error) => {
-            console.error(`Error getting download URL: ${error}`);
+            console.error(`Error updating product: ${error}`);
           });
       })
       .catch((error) => {
