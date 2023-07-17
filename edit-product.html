@@ -9,7 +9,9 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon" />
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -121,87 +123,173 @@
             </div>
           </div>
           <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>  
-            <a href="order.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Đơn Hàng</a>
-            <a href="./product.html?id_catelory=akcesorie" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>akcesorie</a>
-            <a href="./product.html?id_catelory=baterie" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>baterie</a>
-            <a href="./product.html?id_catelory=budzik" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>budzik</a>
-            <a href="./product.html?id_catelory=czajnik" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>czajnik</a>
-            <a href="./product.html?id_catelory=garnki" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>garnki</a>
-            <a href="./product.html?id_catelory=gaz" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>gaz</a>
-            <a href="./product.html?id_catelory=golarka" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>golarka</a>
-            <a href="./product.html?id_catelory=kuchenka" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>kuchenka</a>
-            <a href="./product.html?id_catelory=lampa" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>lampa</a>
-            <a href="./product.html?id_catelory=latarka" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>latarka</a>
-            <a href="./product.html?id_catelory=najlepsza_wyprzedaz" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>najlepsza_wyprzedaz</a>
-            <a href="./product.html?id_catelory=nozycki" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>nozycki</a>
-            <a href="./product.html?id_catelory=obuwie" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>obuwie</a>
-            <a href="./product.html?id_catelory=parasol" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>parasol</a>
-            <a href="./product.html?id_catelory=patelnia" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>patelnia</a>
-            <a href="./product.html?id_catelory=radio" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>radio</a>
-            <a href="./product.html?id_catelory=suszarka" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>suszarka</a>
-            <a href="./product.html?id_catelory=thermos" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>thermos</a>
-            <a href="./product.html?id_catelory=wentylator" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>wentylator</a>
-            <a href="./product.html?id_catelory=zabawka" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>zabawka</a>
-            <a href="./product.html?id_catelory=zelarko" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>zelarko</a>
-            <a href="./product.html?id_catelory=sanphammoi" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sản Phẩm Mới</a>
-            <a href="./email.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Email</a>
-        </div>
+            <a href="index.html" class="nav-item nav-link"
+              ><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a
+            >
+            <a href="order.html" class="nav-item nav-link"
+              ><i class="fa fa-th me-2"></i>Đơn Hàng</a
+            >
+            <a
+              href="./product.html?id_catelory=akcesorie"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>akcesorie</a
+            >
+            <a
+              href="./product.html?id_catelory=baterie"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>baterie</a
+            >
+            <a
+              href="./product.html?id_catelory=budzik"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>budzik</a
+            >
+            <a
+              href="./product.html?id_catelory=czajnik"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>czajnik</a
+            >
+            <a
+              href="./product.html?id_catelory=garnki"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>garnki</a
+            >
+            <a href="./product.html?id_catelory=gaz" class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>gaz</a
+            >
+            <a
+              href="./product.html?id_catelory=golarka"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>golarka</a
+            >
+            <a
+              href="./product.html?id_catelory=kuchenka"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>kuchenka</a
+            >
+            <a href="./product.html?id_catelory=lampa" class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>lampa</a
+            >
+            <a
+              href="./product.html?id_catelory=latarka"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>latarka</a
+            >
+            <a
+              href="./product.html?id_catelory=najlepsza_wyprzedaz"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>najlepsza_wyprzedaz</a
+            >
+            <a
+              href="./product.html?id_catelory=nozycki"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>nozycki</a
+            >
+            <a
+              href="./product.html?id_catelory=obuwie"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>obuwie</a
+            >
+            <a
+              href="./product.html?id_catelory=parasol"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>parasol</a
+            >
+            <a
+              href="./product.html?id_catelory=patelnia"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>patelnia</a
+            >
+            <a href="./product.html?id_catelory=radio" class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>radio</a
+            >
+            <a
+              href="./product.html?id_catelory=suszarka"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>suszarka</a
+            >
+            <a
+              href="./product.html?id_catelory=thermos"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>thermos</a
+            >
+            <a
+              href="./product.html?id_catelory=wentylator"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>wentylator</a
+            >
+            <a
+              href="./product.html?id_catelory=zabawka"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>zabawka</a
+            >
+            <a
+              href="./product.html?id_catelory=zelarko"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>zelarko</a
+            >
+            <a
+              href="./product.html?id_catelory=sanphammoi"
+              class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>Sản Phẩm Mới</a
+            >
+            <a href="./email.html" class="nav-item nav-link"
+              ><i class="fa fa-keyboard me-2"></i>Email</a
+            >
+          </div>
         </nav>
       </div>
       <!-- Sidebar End -->
 
       <!-- Content Start -->
       <div class="content container">
-       
         <div class="row">
-            <div class="col-4 item-edit">
-                <label for="name">Name :</label>
-                <input type="text" id="name" placeholder="Enter name product" />
-            </div>
-            <div class="col-4 item-edit">
-                <label for="img1">Img1 :</label>
-                <div class="img1"></div>
-                <input type="file" id="img1" accept="image/*" />
-             
-            </div>
-            <div class="col-4 item-edit">
-                <label for="img2">Img2 :</label>
-                <div class="img2"></div>
-                <input type="file" id="img2" accept="image/*" />
-                <img src="" id="preview-img2" alt="">
-            </div>
-            <div class="col-4 item-edit">
-                <label for="img3">Img3 :</label>
-                <div class="img3"></div>
-                <input type="file" id="img3" accept="image/*" />
-                <img src="" id="preview-img3" alt="">
-            </div>
-            <div class="col-4 item-edit">
-                <label for="img4">Img4 :</label>
-                <div class="img4"></div>
-                <input type="file" id="img4" accept="image/*" />
-                <img src="" id="preview-img4" alt="">
-            </div>
-            <div class="col-4 item-edit">
-                <label for="img5">Img5 :</label>
-                <div class="img5"></div>
-                <input type="file" id="img5" accept="image/*" />
-                <img src="" id="preview-img5" alt="">
-            </div>
-            <div class="col-4 item-edit">
-                <label for="price">Price Netto:</label>
-                <input type="text" id="price" placeholder="Enter name price" />
-            </div>
-            <div class="col-4 item-edit">
-              <label for="price2">Price Brutto:</label>
-              <input type="text" id="price2" placeholder="Enter name price" />
+          <div class="col-4 item-edit">
+            <label for="name">Name :</label>
+            <input type="text" id="name" placeholder="Enter name product" />
+          </div>
+          <div class="col-4 item-edit">
+            <label for="img1">Img1 :</label>
+            <div class="img1"></div>
+            <input type="file" id="img1" accept="image/*" />
+          </div>
+          <div class="col-4 item-edit">
+            <label for="img2">Img2 :</label>
+            <div class="img2"></div>
+            <input type="file" id="img2" accept="image/*" />
+            <img src="" id="preview-img2" alt="" />
+          </div>
+          <div class="col-4 item-edit">
+            <label for="img3">Img3 :</label>
+            <div class="img3"></div>
+            <input type="file" id="img3" accept="image/*" />
+            <img src="" id="preview-img3" alt="" />
+          </div>
+          <div class="col-4 item-edit">
+            <label for="img4">Img4 :</label>
+            <div class="img4"></div>
+            <input type="file" id="img4" accept="image/*" />
+            <img src="" id="preview-img4" alt="" />
+          </div>
+          <div class="col-4 item-edit">
+            <label for="img5">Img5 :</label>
+            <div class="img5"></div>
+            <input type="file" id="img5" accept="image/*" />
+            <img src="" id="preview-img5" alt="" />
+          </div>
+          <div class="col-4 item-edit">
+            <label for="price">Price Netto:</label>
+            <input type="text" id="price" placeholder="Enter name price" />
+          </div>
+          <div class="col-4 item-edit">
+            <label for="price2">Price Brutto:</label>
+            <input type="text" id="price2" placeholder="Enter name price" />
           </div>
           <div class="col-4 item-edit">
             <label for="type">Đơn vị tính:</label>
             <input type="text" id="type" placeholder="Enter name type" />
-        </div>
           </div>
+        </div>
         <div class="col-12 item-edit textarea">
           <label for="">Describe :</label>
           <textarea name="" id="describe" cols="100%" rows="5"></textarea>
@@ -232,67 +320,83 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-      
     <script>
-          let params = new URLSearchParams(location.search);
-          let id = params.get("id");
-          let id_catelory = params.get('id_catelory')
-  console.log(id , id_catelory);
-
+      const firebaseConfig = {
+        apiKey: "AIzaSyDJeBM551vSoEfY9SIdVG_Y_G2JudH264I",
+        authDomain: "db-ecomer-pola.firebaseapp.com",
+        databaseURL: "https://db-ecomer-pola-default-rtdb.firebaseio.com",
+        projectId: "db-ecomer-pola",
+        storageBucket: "db-ecomer-pola.appspot.com",
+        messagingSenderId: "826890256265",
+        appId: "1:826890256265:web:10b474bb99fb5e1b11ab58",
+      };
+      // Khởi tạo Firebase
+      firebase.initializeApp(firebaseConfig);
+      let params = new URLSearchParams(location.search);
+  let id = params.get("id");
+  let id_catelory = params.get("id_catelory");
+  console.log(id, id_catelory);
 
   const btn_update = document.querySelector(".btnMain");
   btn_update.onclick = () => {
+    btn_update.disabled = true;
     const url = `https://db-ecomer-pola-default-rtdb.firebaseio.com/${id_catelory}/${id}.json`;
 
     const services = {
       name: document.querySelector("#name").value.trim(),
       price: document.querySelector("#price").value.trim(),
       describe: document.querySelector("#describe").value.trim(),
-      price2 : document.querySelector('#price2').value.trim(),
-      type : document.querySelector('#type').value.trim()
+      price2: document.querySelector("#price2").value.trim(),
+      type: document.querySelector("#type").value.trim(),
     };
 
-    const images = {};
     const fileInputs = document.querySelectorAll('input[type="file"]');
-    const filePromises = Array.from(fileInputs).map((input, index) => {
-      const file = input.files[0];
-      if (file) {
-        const reader = new FileReader();
-        return new Promise((resolve, reject) => {
-          reader.onload = function (e) {
-            const base64Image = e.target.result;
-            images[`img${index + 1}`] = base64Image;
-            resolve();
-          };
-          reader.onerror = function (error) {
-            reject(error);
-          };
-          reader.readAsDataURL(file);
-        });
-      } else {
-        return Promise.resolve();
-      }
-    });
+    const storageRef = firebase.storage().ref();
 
-    Promise.all(filePromises)
-      .then(() => {
-        const data = { ...services, ...images };
-        const options = {
-          method: "put",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" },
-        };
-        fetch(url, options)
-          .then((res) => res.json())
-          .then((data) => {
-            document.location = `product.html?id_catelory=${id_catelory}`;
+    Promise.all(
+      Array.from(fileInputs).map((input, index) => {
+        const file = input.files[0];
+        if (file) {
+          const imageRef = storageRef.child(
+            `images/${id_catelory}/img${index + 1}`
+          );
+          return imageRef.put(file);
+        }
+      })
+    )
+      .then((snapshotArray) => {
+        const images = {};
+
+        Promise.all(
+          snapshotArray.map((snapshot, index) => {
+            return snapshot.ref.getDownloadURL().then((downloadURL) => {
+              images[`img${index + 1}`] = downloadURL;
+            });
+          })
+        )
+          .then(() => {
+            const data = { ...services, ...images };
+            const options = {
+              method: "put",
+              body: JSON.stringify(data),
+              headers: { "Content-Type": "application/json" },
+            };
+
+            fetch(url, options)
+              .then((res) => res.json())
+              .then((data) => {
+                document.location = `product.html?id_catelory=${id_catelory}`;
+              })
+              .catch((error) => {
+                console.error(`Error updating product: ${error}`);
+              });
           })
           .catch((error) => {
-            console.error(`Error updating product: ${error}`);
+            console.error(`Error getting download URL: ${error}`);
           });
       })
       .catch((error) => {
-        console.error(`Error reading file: ${error}`);
+        console.error(`Error uploading images: ${error}`);
       });
   };
 
@@ -303,14 +407,9 @@
       document.querySelector("#name").value = services.name;
       document.querySelector("#price").value = services.price;
       document.querySelector("#describe").value = services.describe;
-      document.querySelector("#price2").value = services.price2
-      document.querySelector('#type').value = services.type
+      document.querySelector("#price2").value = services.price2;
+      document.querySelector("#type").value = services.type;
     });
-
-    </script> 
-
-
-
-  
+    </script>
   </body>
 </html>
