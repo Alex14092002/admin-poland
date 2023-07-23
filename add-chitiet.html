@@ -19,7 +19,9 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
@@ -95,52 +97,45 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>
-                  
-                    <a href="order.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Quản lý đơn Hàng</a>
-                    <a href="product-for-nail.html" class="nav-item nav-link active"><i class="fa fa-keyboard me-2"></i>Product For Nail</a>
-                    <a href="services.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Services</a>
-                    <a href="single.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Single Length tray</a>
-                    <a href="premade.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Premade</a>
-                    <a href="accsesories.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Assesories</a>
-                </div>
+                  <a href="index.html" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>  
+                
+                  <a href="home.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sửa trang chủ</a>
+                  <a href="./product.html?id_catelory=homeproduct" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sản phẩm trang chủ</a>
+                  <a href="./product.html?id_catelory=mua1tang1" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Combo 1 tặng 1</a>
+                  <a href="./product.html?id_catelory=combo2" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Combo 2 triệu</a>
+                  <a href="./product.html?id_catelory=combo3" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Combo 3 triệu</a>
+                  <a href="./product.html?id_catelory=duongthe" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Dưỡng Thể</a>
+                  <a href="./product.html?id_catelory=comkemchongnang" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Kem chống nắng</a>
+                  <a href="./sheet.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Quản lý Sheet</a>
+              </div>
             </nav>
         </div>
         <!-- Sidebar End -->
 
 
         <!-- Content Start -->
-        <div class="content">
-           
-        <div class="row">
+        <div class="content container">
+          <div class="row">
             <div class="col-4 item-edit">
-                <label for="name">Name :</label>
-                <input type="text" id="name" placeholder="Enter name product" />
+              <label for="name">Name :</label>
+              <input type="text" id="name" placeholder="Enter name product" />
             </div>
             <div class="col-4 item-edit">
-                <label for="img1">Img1 :</label>
-                <input type="file" id="img1" accept="image/*" />
+              <label for="img">Img :</label>
+          
+              <input type="file" id="img" accept="image/*" />
+            </div>
+         
+         
+            <div class="col-4 item-edit">
+              <label for="price">Dung tích : </label>
+              <input type="text" id="dungtich" placeholder="Enter dung tích" />
             </div>
             <div class="col-4 item-edit">
-                <label for="img2">Img2 :</label>
-                <input type="file" id="img2" accept="image/*" />
+              <label for="price">Số lượng : </label>
+              <input type="text" id="soluong" placeholder="Enter số lượng" />
             </div>
-            <div class="col-4 item-edit">
-                <label for="img3">Img3 :</label>
-                <input type="file" id="img3" accept="image/*" />
-            </div>
-            <div class="col-4 item-edit">
-                <label for="img4">Img4 :</label>
-                <input type="file" id="img4" accept="image/*" />
-            </div>
-            <div class="col-4 item-edit">
-                <label for="img5">Img5 :</label>
-                <input type="file" id="img5" accept="image/*" />
-            </div>
-            <div class="col-4 item-edit">
-                <label for="price">Price :</label>
-                <input type="text" id="price" placeholder="Enter name price" />
-            </div>
+      
           </div>
           <div class="col-12 item-edit textarea">
             <label for="">Describe :</label>
@@ -170,56 +165,104 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-        const btn_add = document.querySelector('.btnMain');
-btn_add.onclick = function () {
-    const url = `https://data-nail-hl-default-rtdb.firebaseio.com/productfornail.json`;
 
-    const services = {
-        name: document.querySelector('#name').value.trim(),
-        price: document.querySelector('#price').value.trim(),
-        describe: document.querySelector('#describe').value.trim()
-    };
+<script>
+  // your_script.js
+const firebaseConfig = {
+  apiKey: "AIzaSyDjq_wNFhCFdFBNHB_BKZfFvLyDnJFKxPE",
+  authDomain: "data-kieh.firebaseapp.com",
+  databaseURL: "https://data-kieh-default-rtdb.firebaseio.com",
+  projectId: "data-kieh",
+  storageBucket: "data-kieh.appspot.com",
+  messagingSenderId: "471804549736",
+  appId: "1:471804549736:web:b21eaa4ab306290ec9f9dd"
+};
 
-    const images = {};
-    const imgInputs = document.querySelectorAll('input[type="file"]');
-    imgInputs.forEach((input, index) => {
-        const file = input.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                // Chuyển đổi file thành base64
-                const base64Image = e.target.result;
-                // Lưu đường dẫn base64 vào đối tượng images
-                images[`img${index + 1}`] = base64Image;
+firebase.initializeApp(firebaseConfig);
 
-                // Kiểm tra xem đã lưu đủ 5 ảnh hay chưa
-                if (Object.keys(images).length === 5) {
-                    // Gửi yêu cầu POST đến server với đối tượng dữ liệu services và images
-                    const data = { ...services, ...images };
-                    fetch(url, {
-                        method: 'POST',
-                        body: JSON.stringify(data),
-                        headers: { 'Content-Type': 'application/json' }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Product created successfully!');
-                            document.location = "product-for-nail.html";
-                        })
-                        .catch(error => {
-                            console.error(`Error creating product: ${error}`);
-                        });
-                }
-            };
-            reader.readAsDataURL(file);
+const storageRef = firebase.storage().ref();
+
+document.querySelector(".btnMain").onclick = function() {
+  const params = new URLSearchParams(location.search);
+  const id_catelory = params.get("id_catelory");
+  const id = params.get("id");
+
+  const nameInput = document.querySelector("#name");
+  const describeInput = document.querySelector("#describe");
+  const dungtich = document.querySelector("#dungtich");
+  const soluong = document.querySelector("#soluong");
+  const imgInput = document.querySelector("#img");
+  const btnAdd = document.querySelector(".btnMain");
+
+  btnAdd.disabled = true;
+
+  const generateImageUploadPromise = (file) => {
+    return new Promise((resolve, reject) => {
+      const randomIndex = Math.floor(Math.random() * 10000000000000);
+      const imageRef = storageRef.child(`images/${id_catelory}/img_${randomIndex}`);
+      const uploadTask = imageRef.put(file);
+
+      uploadTask.on(
+        "state_changed",
+        null,
+        (error) => {
+          reject(error);
+        },
+        () => {
+          uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then((downloadURL) => {
+              resolve(downloadURL);
+            })
+            .catch((error) => {
+              reject(error);
+            });
         }
+      );
+    });
+  };
+
+  const file = imgInput.files[0];
+  const uploadPromises = file ? [generateImageUploadPromise(file)] : [Promise.resolve("")];
+
+  Promise.all(uploadPromises)
+    .then((imagesArray) => {
+      const [imgURL] = imagesArray;
+
+      const data = {
+        name: nameInput ? nameInput.value.trim() : "",
+        subcibe: describeInput ? describeInput.value.trim() : "",
+        dungtich: dungtich ? dungtich.value.trim() : "",
+        soluong: soluong ? soluong.value.trim() : "",
+        img: imgURL,
+      };
+
+      const requestData = {
+        ...data,
+      };
+
+      const url = `https://data-kieh-default-rtdb.firebaseio.com/${id_catelory}/${id}/list.json`;
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(requestData),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Product created successfully!");
+          alert("Thêm thành công");
+          document.location = `chitietcombo.html?id_catelory=${id_catelory}&id=${id}`;
+        })
+        .catch((error) => {
+          console.error(`Error creating product: ${error}`);
+        });
+    })
+    .catch((error) => {
+      console.error(`Error uploading image: ${error}`);
     });
 };
 
-
-    </script>
-
+</script>
 </body>
 
 </html>

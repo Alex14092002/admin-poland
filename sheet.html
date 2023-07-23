@@ -65,6 +65,12 @@
         background-color: red;
         color: #fff;
       }
+      .btn-sheet{
+        width: 90%;
+      }
+      .content{
+        padding: 20px 10px;
+      }
     </style>
   </head>
 
@@ -128,17 +134,7 @@
 
       <!-- Content Start -->
       <div class="content">
-        <div class="btn-add"></div>
-        <table class="table-data">
-          <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>IMAGE</th>
-            <th>PRICE</th>
-            <th>ACTIVE</th>
-          </tr>
-          <!-- tbody -->
-        </table>
+         
       </div>
       <!-- Content End -->
 
@@ -162,62 +158,37 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
-          let params = new URLSearchParams(location.search);
-        let id_catelory = params.get("id_catelory");
-      (async () => {
-      
-        console.log(id_catelory);
-        const table = document.querySelector(".table-data");
-        const res = await fetch(
-          `https://data-kieh-default-rtdb.firebaseio.com/${id_catelory}.json`
-        );
-        const data = await res.json();
-        console.log(data);
-        let count = 1;
-        if (data) {
-          Object.keys(data).forEach((key) => {
-            const row = data[key];
-            console.log(row);
-            console.log(key);
-            if (row !== null) {
-              table.innerHTML += `
-              <tr >
-                    <td>${count++}</td>
-                    <td>${row.name}</td>
-                    <td>
-                        <img src=" ${row.img1}" height="100px"/>
-                   </td>
-                    <td>${row.price}</td>
-                    <td>
-                        <a href="edit-product.html?id_catelory=${id_catelory}&id=${key}">Edit</a>
-                        <button onclick="xoa('${key}')">Delete</button>
-                    </td>
-                </tr>
-              `;
-            }
-          })();
-        }
-      })();
+     (async () => {
+  const res = await fetch(`https://data-kieh-default-rtdb.firebaseio.com/sheet/0.json`);
+  const data = await res.json();
 
-      const xoa = (id) => {
-        const question = confirm("Bạn có chắc muốn xoá?");
-        if (question == false) return;
-        (async () => {
-          await fetch(
-            `https://data-kieh-default-rtdb.firebaseio.com/${id_catelory}/${id}.json`,
-            {
-              method: "DELETE",
-            }
-          );
-          window.location.reload();
-        })();
-      };
+  const content = document.querySelector('.content');
+  content.innerHTML += `
+    <input type="text" value='${data.content}' class="btn-sheet">
+    <button id="saveButton">Lưu</button>
+  `;
 
-      const btnAdd = document.querySelector('.btn-add')
-            console.log(btnAdd);
-            btnAdd.innerHTML += `
-            <a href="./add-product.html?id_catelory=${id_catelory}">Thêm sản phẩm</a>
-            `
+  const saveButton = document.getElementById('saveButton');
+  saveButton.addEventListener('click', async () => {
+    const inputValue = document.querySelector('.btn-sheet').value;
+    await updateDataToDatabase(inputValue);
+  });
+})();
+
+async function updateDataToDatabase(newContent) {
+  const updateUrl = `https://data-kieh-default-rtdb.firebaseio.com/sheet/0.json`;
+  const updateOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ content: newContent })
+  };
+
+  await fetch(updateUrl, updateOptions);
+  alert('Đã cập nhật nội dung vào cơ sở dữ liệu!');
+}
+
     </script>
   </body>
 </html>

@@ -113,37 +113,17 @@
             </div>
           </div>
           <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link"
-              ><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a
-            >
-
-            <a href="widget.html" class="nav-item nav-link active"
-              ><i class="fa fa-th me-2"></i>Order Management</a
-            >
-            <a href="form.html" class="nav-item nav-link"
-              ><i class="fa fa-keyboard me-2"></i>Forms</a
-            >
-            <a href="table.html" class="nav-item nav-link"
-              ><i class="fa fa-table me-2"></i>Tables</a
-            >
-            <a href="chart.html" class="nav-item nav-link"
-              ><i class="fa fa-chart-bar me-2"></i>Charts</a
-            >
-            <div class="nav-item dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                ><i class="far fa-file-alt me-2"></i>Pages</a
-              >
-              <div class="dropdown-menu bg-transparent border-0">
-                <a href="signin.html" class="dropdown-item">Sign In</a>
-                <a href="signup.html" class="dropdown-item">Sign Up</a>
-                <a href="404.html" class="dropdown-item">404 Error</a>
-                <a href="blank.html" class="dropdown-item">Blank Page</a>
-              </div>
-            </div>
-          </div>
+            <a href="index.html" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Trang Chủ</a>  
+          
+            <a href="home.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sửa trang chủ</a>
+            <a href="./product.html?id_catelory=homeproduct" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Sản phẩm trang chủ</a>
+            <a href="./product.html?id_catelory=mua1tang1" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Combo 1 tặng 1</a>
+            <a href="./product.html?id_catelory=combo2" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Combo 2 triệu</a>
+            <a href="./product.html?id_catelory=combo3" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Combo 3 triệu</a>
+            <a href="./product.html?id_catelory=duongthe" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Dưỡng Thể</a>
+            <a href="./product.html?id_catelory=comkemchongnang" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Kem chống nắng</a>
+            <a href="./sheet.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Quản lý Sheet</a>
+        </div>
         </nav>
       </div>
       <!-- Sidebar End -->
@@ -182,126 +162,10 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <!-- <script>
-      // Lấy thẻ input file
-      const fileInputs = document.querySelectorAll('input[type="file"]');
-
-      // Lặp qua từng input file
-      fileInputs.forEach((fileInput, index) => {
-        // Lắng nghe sự kiện khi có tệp được chọn
-        fileInput.addEventListener("change", async (event) => {
-          const file = event.target.files[0];
-
-          // Kiểm tra xem tệp có tồn tại hay không
-          if (file) {
-            // Đọc tệp dưới dạng base64
-            const base64Data = await readFileAsBase64(file);
-
-            // Cập nhật đường dẫn ảnh trong database
-            updateImageURL(index + 1, base64Data);
-          }
-        });
-      });
-
-      // Hàm đọc tệp dưới dạng base64
-      function readFileAsBase64(file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-
-          reader.onload = () => {
-            resolve(reader.result);
-          };
-
-          reader.onerror = reject;
-
-          reader.readAsDataURL(file);
-        });
-      }
-
-      // Hàm cập nhật đường dẫn ảnh trong database
-      async function updateImageURL(imageIndex, base64Data) {
-        const res = await fetch(
-          `https://data-nail-hl-default-rtdb.firebaseio.com/home/0.json`
-        );
-        const data = await res.json();
-
-        // Cập nhật đường dẫn ảnh tương ứng
-        data[`img${imageIndex}`] = base64Data;
-
-        // Gửi yêu cầu cập nhật đường dẫn ảnh trong database
-        await fetch(
-          `https://data-nail-hl-default-rtdb.firebaseio.com/home/0.json`,
-          {
-            method: "PUT",
-            body: JSON.stringify(data),
-          }
-        );
-      }
-      (async () => {
-        const table = document.querySelector(".tbody");
-        const res = await fetch(
-          `https://data-nail-hl-default-rtdb.firebaseio.com/home/0.json`
-        );
-
-        const data = await res.json();
-
-        table.innerHTML += `
-     <tr>
-         <td>  
-           <img src="${data.img1}" alt="" width="100%" >
-         </td>
-         <td>
-           <input type="file">
-          
-         </td>
-        
-       </tr>
-       <tr>
-         <td>  
-           <img src="${data.img2}" alt="" width="100%" >
-         </td>
-         <td>
-           <input type="file">
-          
-         </td>
-        
-       </tr>
-       <tr>
-         <td>  
-           <img src="${data.img3}" alt="" width="100%" >
-         </td>
-         <td>
-           <input type="file">
-          
-         </td>
-        
-       </tr>
-       <tr>
-         <td>  
-           <img src="${data.img4}" alt="" width="100%" >
-         </td>
-         <td>
-           <input type="file">
-          
-         </td>
-        
-       </tr>
-       <tr>
-         <td>  
-           <img src="${data.img5}" alt="" width="100%" >
-         </td>
-         <td>
-           <input type="file">
-          
-         </td>
-        
-       </tr>
-     `;
-      })();
-    </script> -->
+   
     <script>
-      // Lấy thẻ input file
-const fileInputs = document.querySelectorAll('input[type="file"]');
+       // Lấy thẻ input file
+       const fileInputs = document.querySelectorAll('input[type="file"]');
 
 // Lặp qua từng input file
 fileInputs.forEach((fileInput, index) => {
@@ -337,68 +201,61 @@ function readFileAsBase64(file) {
 
 // Hàm cập nhật đường dẫn ảnh trong database
 async function updateImageURL(imageIndex, base64Data) {
-  const res = await fetch('https://data-nail-hl-default-rtdb.firebaseio.com/home/0.json');
+  const res = await fetch('https://data-kieh-default-rtdb.firebaseio.com/home/0.json');
   const data = await res.json();
 
   // Cập nhật đường dẫn ảnh tương ứng
-  data[`img${imageIndex}`] = base64Data;
+  data[`banner${imageIndex}`] = base64Data;
 
   // Gửi yêu cầu cập nhật đường dẫn ảnh trong database
-  await fetch('https://data-nail-hl-default-rtdb.firebaseio.com/home/0.json', {
+  await fetch('https://data-kieh-default-rtdb.firebaseio.com/home/0.json', {
     method: 'PUT',
     body: JSON.stringify(data),
   });
+
+  // Hiển thị thông báo khi lưu ảnh thành công
+  alert(`Ảnh ${imageIndex} đã được cập nhật và lưu thành công!`);
 }
+async function saveBanner(imageIndex) {
+        const fileInput = document.getElementById(`fileInput${imageIndex}`);
+        const file = fileInput.files[0];
+
+        if (!file) {
+          alert('Vui lòng chọn một ảnh để cập nhật.');
+          return;
+        }
+
+        const base64Data = await readFileAsBase64(file);
+        await updateImageURL(imageIndex, base64Data);
+        window.location.href = "home.html"
+      }
 
 (async () => {
   const table = document.querySelector('.tbody');
-  const res = await fetch('https://data-nail-hl-default-rtdb.firebaseio.com/home/0.json');
+  const res = await fetch('https://data-kieh-default-rtdb.firebaseio.com/home/0.json');
   const data = await res.json();
 
-  table.innerHTML += `
-    <tr>
-      <td>
-        <img src="${data.img1}" alt="" width="100%">
-      </td>
-      <td>
-        <input type="file">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img src="${data.img2}" alt="" width="100%">
-      </td>
-      <td>
-        <input type="file">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img src="${data.img3}" alt="" width="100%">
-      </td>
-      <td>
-        <input type="file">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img src="${data.img4}" alt="" width="100%">
-      </td>
-      <td>
-        <input type="file">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img src="${data.img5}" alt="" width="100%">
-      </td>
-      <td>
-        <input type="file">
-      </td>
-    </tr>
-  `;
-})();
+  // Loop through the banners and add them to the table
+  for (let imageIndex = 1; imageIndex <= 13; imageIndex++) {
+    const bannerURL = data[`banner${imageIndex}`];
 
+    table.innerHTML += `
+    
+    <tr>
+              <td>
+                <img src="${bannerURL}" alt="" width="100%">
+              </td>
+              <td>
+                <input type="file" id="fileInput${imageIndex}">
+              </td>
+              <td>
+                <button onclick="saveBanner(${imageIndex})">Lưu</button>
+              </td>
+            </tr>
+
+    `;
+  }
+})();
     </script>
   </body>
 </html>
